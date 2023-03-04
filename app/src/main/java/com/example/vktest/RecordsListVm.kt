@@ -24,30 +24,32 @@ class RecordsListVm @Inject constructor(private val audioPlayer: AudioPlayer) : 
     private val errorStringId_ = MutableLiveData<Int>(null)
     val errorStringId: LiveData<Int> = errorStringId_
 
-    private var playingPosition: Int? = null
+    private var currentRecordPosition: Int? = null
 
     fun pause(record: RecordVm, position: Int) = viewModelScope.launch(Dispatchers.IO) {
-        playingPosition = null
         audioPlayer.pause()
     }
 
-    fun play(record: RecordVm, position: Int) = viewModelScope.launch(Dispatchers.IO) {
-        if (playingPosition == position) {
-            audioPlayer.resume()
-        } else {
-            Log.d("list_before_change", records.value!!.toString())
+    fun play(record: RecordVm, position: Int) {
+        if (currentRecordPosition == position) {
+            viewModelScope.launch(Dispatchers.IO) {
+                audioPlayer.resume()
+            }
+            return
+        }
+        val prevRecordPosition = currentRecordPosition
+        currentRecordPosition = position
+        viewModelScope.launch(Dispatchers.IO) {
             records.postValue(records.value!!.mapIndexed { i: Int, recordVm: RecordVm ->
-                if(i == playingPosition) {
-                    return@mapIndexed recordVm.copy(selected = false)
-                }
-                if(i == position) {
+                if (i == currentRecordPosition) {
                     return@mapIndexed recordVm.copy(selected = true)
+                }
+                if (i == prevRecordPosition) {
+                    return@mapIndexed recordVm.copy(selected = false)
                 }
                 return@mapIndexed recordVm
             })
-            Log.d("list_after_change", records.value!!.toString())
-            playingPosition = position
-            if(!audioPlayer.changePlayingFile(record.audioSource)) {
+            if (!audioPlayer.changePlayingFile(record.audioSource)) {
                 errorStringId_.postValue(R.string.error_corrupted_audio)
             }
         }
