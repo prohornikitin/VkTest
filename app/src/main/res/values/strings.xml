@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">VkTest</string>
+    <string name="your_records">Your records</string>
+    <string name="new_record">New record</string>
+    <string name="error_corrupted_audio">Error: audio file is corrupted or not exists </string>
+</resources>
