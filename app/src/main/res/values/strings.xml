@@ -14,4 +14,5 @@
     <string name="ok">@android:string/ok</string>
     <string name="cancel">@android:string/cancel</string>
     <string name="click_on_note_to_delete">Click on the item to delete it</string>
+    <string name="remove_mode">remove_mode</string>
 </resources>

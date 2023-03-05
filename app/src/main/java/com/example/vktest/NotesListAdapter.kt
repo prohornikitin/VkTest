@@ -35,7 +35,7 @@ class NotesListAdapter(
         val binding = viewHolder.binding
         val record = getItem(position)
         binding.title.text = record.title
-        binding.creationTime.text = record.recordingTimestamp.format(DateTimeFormatter.ISO_TIME) //TODO: format
+        binding.creationTime.text = record.recordingTimestamp.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"))
         if(binding.playStopButton.isChecked != record.selected) {
             binding.playStopButton.isChecked = record.selected
         }

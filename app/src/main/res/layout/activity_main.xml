@@ -17,25 +17,24 @@
         android:id="@+id/btn_record_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
         android:layout_gravity="bottom|end"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_microphone"
         android:backgroundTint="@color/primary"
-        android:contentDescription="@string/new_record"
-        />
+        android:contentDescription="@string/new_record" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
         android:layout_gravity="bottom|start"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_trash"
         android:backgroundTint="@color/red"
-        android:contentDescription="@string/new_record"
+        android:contentDescription="@string/remove_mode"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

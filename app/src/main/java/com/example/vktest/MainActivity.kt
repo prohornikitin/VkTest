@@ -75,8 +75,10 @@ class MainActivity : AppCompatActivity(), NameChooseDialogFragment.ResultListene
             listVm.deleteMode = !listVm.deleteMode
             if(listVm.deleteMode) {
                 showSnackBar(R.string.click_on_note_to_delete)
+                binding.btnDelete.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_cancel))
+            } else {
+                binding.btnDelete.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_trash))
             }
-//            binding.btnDelete.setImageDrawable()
         }
 
         val notesAdapter = NotesListAdapter(listVm::play, listVm::pause, listVm::itemClick)
@@ -118,7 +120,6 @@ class MainActivity : AppCompatActivity(), NameChooseDialogFragment.ResultListene
                     requestAudioRecordingPermission()
                 }
                 RecordingState.NAMING -> {
-                    //TODO naming dialog
                     NameChooseDialogFragment().show(supportFragmentManager, "name_choose")
                 }
             }
