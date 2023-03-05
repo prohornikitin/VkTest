@@ -42,7 +42,7 @@ class NameChooseDialogFragment : DialogFragment() {
 
         return AlertDialog.Builder(it)
             .setView(binding.root)
-            .setTitle("dasd")
+            .setTitle(R.string.choose_name)
             .create()
     } ?: throw IllegalStateException("Activity cannot be null")
 
