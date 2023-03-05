@@ -9,4 +9,8 @@
     <string name="error_unexpected">Unexpected error</string>
     <string name="error_no_permission_audio_record">Can\'t record notes without microphone permission</string>
     <string name="error_click_too_fast">You are clicking too fast</string>
+    <string name="name">Name</string>
+    <string name="choose_name">Choose a name</string>
+    <string name="ok">@android:string/ok</string>
+    <string name="cancel">@android:string/cancel</string>
 </resources>

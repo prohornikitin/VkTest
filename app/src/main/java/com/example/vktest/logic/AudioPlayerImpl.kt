@@ -3,10 +3,14 @@ package com.example.vktest.logic
 import android.content.Context
 import android.media.MediaPlayer
 import android.net.Uri
+import android.util.Log
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.nio.file.Path
 import javax.inject.Inject
 import kotlin.io.path.div
+import kotlin.io.path.notExists
+
+private const val LOG_TAG = "AudioPlayerImpl"
 
 class AudioPlayerImpl @Inject constructor(@ApplicationContext val appContext: Context) :
     AudioPlayer {
@@ -21,8 +25,13 @@ class AudioPlayerImpl @Inject constructor(@ApplicationContext val appContext: Co
         }
 
 
-        val fullPath = Uri.fromFile((appContext.filesDir.toPath() / path).toFile())
-        media = MediaPlayer.create(appContext, fullPath)
+        val fullPath = (appContext.filesDir.toPath() / path)
+        if(fullPath.notExists()) {
+            Log.e(LOG_TAG, "path $fullPath does not exists")
+            return false
+        }
+        val uri = Uri.fromFile(fullPath.toFile())
+        media = MediaPlayer.create(appContext, uri)
         if(media == null) {
             return false
         }

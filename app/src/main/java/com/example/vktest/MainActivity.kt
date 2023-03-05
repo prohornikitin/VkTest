@@ -17,10 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NameChooseDialogFragment.ResultListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var listVm: NotesListVm
     private lateinit var recordingVm: RecordingVm
+
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -106,11 +107,17 @@ class MainActivity : AppCompatActivity() {
                 }
                 RecordingState.NAMING -> {
                     //TODO naming dialog
-                    recordingVm.namingComplete("newName")
+                    NameChooseDialogFragment().show(supportFragmentManager, "name_choose")
                 }
-
             }
-
         }
+    }
+
+    override fun onDialogPositiveClick(name: String) {
+        recordingVm.namingComplete(name)
+    }
+
+    override fun onDialogNegativeClick() {
+        recordingVm.namingCanceled()
     }
 }

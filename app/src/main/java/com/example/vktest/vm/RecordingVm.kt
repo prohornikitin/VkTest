@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import java.nio.file.Path
 import java.time.LocalDateTime
 import javax.inject.Inject
+import kotlin.io.path.deleteIfExists
 
 
 private const val LOG_TAG = "RecordingVm"
@@ -106,6 +107,10 @@ class RecordingVm @Inject constructor(
             repo.addFromTemporaryFile(name, lastRecordTimestamp!!, lastRecordPath!!)
             state_.postValue(RecordingState.IDLE)
         }
+    }
+
+    fun namingCanceled() {
+        lastRecordPath?.deleteIfExists()
     }
 
 

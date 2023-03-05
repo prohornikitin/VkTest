@@ -8,7 +8,7 @@ class NoteItemVm(private val note: Note, val selected: Boolean = false) {
     val title: String
         get() = note.title
     val recordingTimestamp: LocalDateTime
-        get() = note.recordingTimestamp
+        get() = note.timestamp
     val audioSource: Path
         get() = note.audioSource
 
