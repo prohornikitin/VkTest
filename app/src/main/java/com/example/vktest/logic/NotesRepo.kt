@@ -2,7 +2,6 @@ package com.example.vktest.logic
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.vktest.data.Note
 import com.example.vktest.data.NotesDatabase
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -36,6 +35,10 @@ class NotesRepo @Inject constructor(
             fileName += "_"
         }
         return fileName
+    }
+
+    fun delete(note: Note) {
+        notesDao.delete(note)
     }
 
     fun add(note: Note) {

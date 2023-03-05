@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity(), NameChooseDialogFragment.ResultListene
     private lateinit var recordingVm: RecordingVm
 
 
+
+
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity(), NameChooseDialogFragment.ResultListene
                 showSnackBar(R.string.error_no_permission_audio_record)
             }
         }
+
 
     fun requestAudioRecordingPermission() {
         val permission = android.Manifest.permission.RECORD_AUDIO
@@ -67,7 +70,16 @@ class MainActivity : AppCompatActivity(), NameChooseDialogFragment.ResultListene
             showSnackBar(resource)
         }
 
-        val notesAdapter = NotesListAdapter(listVm::play, listVm::pause)
+        binding.btnDelete.setOnClickListener {
+            listVm.pause()
+            listVm.deleteMode = !listVm.deleteMode
+            if(listVm.deleteMode) {
+                showSnackBar(R.string.click_on_note_to_delete)
+            }
+//            binding.btnDelete.setImageDrawable()
+        }
+
+        val notesAdapter = NotesListAdapter(listVm::play, listVm::pause, listVm::itemClick)
         binding.records.adapter = notesAdapter
         listVm.notes.observe(this) {
             notesAdapter.submitList(it)

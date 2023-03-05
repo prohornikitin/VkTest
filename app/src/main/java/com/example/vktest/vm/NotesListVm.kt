@@ -22,9 +22,11 @@ class NotesListVm @Inject constructor(
         CORRUPTED_AUDIO,
         UNEXPECTED_ERROR
     }
+
+    var deleteMode = false
+
     private val error_ = MutableLiveData<Error?>(null)
     val error: LiveData<Error?> = error_
-
 
     private val notes_ = MutableLiveData(emptyList<NoteItemVm>())
 
@@ -91,6 +93,15 @@ class NotesListVm @Inject constructor(
                 error_.postValue(Error.CORRUPTED_AUDIO)
                 pause()
             }
+        }
+    }
+
+    fun itemClick(position: Int) {
+        if(!deleteMode) {
+            return
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.delete(notes.value!![position].note)
         }
     }
 }

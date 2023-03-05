@@ -4,7 +4,7 @@ import com.example.vktest.data.Note
 import java.nio.file.Path
 import java.time.LocalDateTime
 
-class NoteItemVm(private val note: Note, val selected: Boolean = false) {
+class NoteItemVm(val note: Note, val selected: Boolean = false) {
     val title: String
         get() = note.title
     val recordingTimestamp: LocalDateTime

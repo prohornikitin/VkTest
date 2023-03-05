@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter
 class NotesListAdapter(
     private val onPlay: (NoteItemVm, Int) -> Unit,
     private val onPause: () -> Unit,
+    private val onItemClick: (Int) -> Unit
 ) : ListAdapter<NoteItemVm, NotesListAdapter.ViewHolder>(RecordDiffCallback) {
 
     class ViewHolder(
@@ -48,6 +49,9 @@ class NotesListAdapter(
                     onPause()
                 }
             }
+        viewHolder.binding.root.setOnClickListener {
+            onItemClick(viewHolder.adapterPosition)
+        }
     }
 
 }
