@@ -2,6 +2,9 @@
 <resources>
     <declare-styleable name="ToggleImageButton">
         <attr name="android:checked" />
-        <attr name="android:src"/>
+    </declare-styleable>
+
+    <declare-styleable name="ToggleFloatingActionButton">
+        <attr name="android:checked" />
     </declare-styleable>
 </resources>

@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:src="@drawable/media_play_pause_button"
+        android:src="@drawable/play_pause_button"
         app:tint="@color/white"
         android:background="@drawable/ic_circle"
         android:backgroundTint="@color/primary"

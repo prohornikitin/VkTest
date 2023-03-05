@@ -8,8 +8,7 @@ import com.example.vktest.R
 
 class ToggleImageButton : AppCompatImageButton, Checkable {
 
-    @FunctionalInterface
-    interface OnCheckedChangeListener {
+    fun interface OnCheckedChangeListener {
         fun onCheckedChanged(button: ToggleImageButton?, isChecked: Boolean)
     }
 

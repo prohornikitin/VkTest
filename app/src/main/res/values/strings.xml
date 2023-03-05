@@ -2,5 +2,11 @@
     <string name="app_name">VkTest</string>
     <string name="your_records">Your records</string>
     <string name="new_record">New record</string>
-    <string name="error_corrupted_audio">Error: audio file is corrupted or not exists </string>
+    <string name="recording_in_progress">Recording in progress</string>
+
+    <string name="error_corrupted_audio_file">Error: audio file is corrupted or not exists </string>
+    <string name="error_cannot_create_file">Error: cannot create file</string>
+    <string name="error_unexpected">Unexpected error</string>
+    <string name="error_no_permission_audio_record">Can\'t record notes without microphone permission</string>
+    <string name="error_click_too_fast">You are clicking too fast</string>
 </resources>
